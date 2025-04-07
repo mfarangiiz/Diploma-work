@@ -196,8 +196,8 @@
                             </div>
                         </div>
                         <div class="mb-3 text-center">
-                            <span>Akkauntingiz yo'qmi?</span>
-                            <a href="{{ route('login') }}" class="btn btn-link">Ro`yxatdan o`tganmisiz</a>
+                            <span>Akkauntingiz bormi?</span>
+                            <a href="{{ route('login') }}" class="btn btn-link">Kirish</a>
                         </div>
                         {{--                        <div class="mb-3 form-password-toggle">--}}
                         {{--                            <label class="form-label" for="password">Confirm Password</label>--}}
