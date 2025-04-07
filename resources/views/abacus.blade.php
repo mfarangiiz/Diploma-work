@@ -15,8 +15,11 @@
             <div class="row mb-5">
                 <div class="col-md-6 col-lg-8 mb-2 mx-auto my-auto">
                     <div class="card" style="display: flex; justify-content: center; align-items: center;">
-                        <iframe width="560" height="315" src="{{ $abakus->video }}" frameborder="0"
-                                allowfullscreen></iframe>
+                        <video width="400" controls>
+                            <source src="{{ asset(asset('storage/' . $abakus->video)) }}"
+                                    type="{{ Storage::mimeType('storage/videos' . $abakus->video) }}">
+                            Your browser does not support HTML5 video.
+                        </video>
 
 
                         <div class="card-body">

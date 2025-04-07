@@ -43,10 +43,10 @@
                             <td>{{ $abakus->description }}</td>
                             <td>{{ $abakus->age }}</td>
                             <td>
-{{--                                <video width="400" controls>--}}
-{{--                                    <source src="{{ asset(asset('storage/videos' . $abakus->video)) }}" type="{{ Storage::mimeType('storage/videos' . $abakus->video) }}">--}}
-{{--                                    Your browser does not support HTML5 video.--}}
-{{--                                </video>--}}
+                                <video width="400" controls>
+                                    <source src="{{ asset(asset('storage/' . $abakus->video)) }}" type="{{ Storage::mimeType('storage/videos' . $abakus->video) }}">
+                                    Your browser does not support HTML5 video.
+                                </video>
                             </td>
                             <td>
                                 <div class="d-flex">

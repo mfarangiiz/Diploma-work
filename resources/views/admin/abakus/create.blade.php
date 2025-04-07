@@ -14,7 +14,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="POST" action="{{ route('abakus.store') }}" enctype="multipart/form-data" class="prevent-duplicate-submit">
-                                @csrf
+                                {{ csrf_field() }}
                                 <div class="mb-3">
                                     <label for="name" class="form-label">sarlavha</label>
                                     <input
@@ -49,7 +49,7 @@
 
                                 <div class="col mb-3">
                                     <label for="dobExLarge" class="form-label">Video</label>
-                                    <input type="url" id="dobExLarge" name="video" class="form-control" accept="video/*"
+                                    <input  id="dobExLarge" type="file" name="video" class="form-control" accept="video/*"
                                            value="{{ old('video') }}" required/>
                                 </div>
 
