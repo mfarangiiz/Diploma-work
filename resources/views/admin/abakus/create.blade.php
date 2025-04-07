@@ -13,7 +13,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{{ route('abakus.store') }}" class="prevent-duplicate-submit">
+                            <form method="POST" action="{{ route('abakus.store') }}" enctype="multipart/form-data" class="prevent-duplicate-submit">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="name" class="form-label">sarlavha</label>
