@@ -195,6 +195,10 @@
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
+                        <div class="mb-3 text-center">
+                            <span>Akkauntingiz yo'qmi?</span>
+                            <a href="{{ route('login') }}" class="btn btn-link">Ro`yxatdan o`tganmisiz</a>
+                        </div>
                         {{--                        <div class="mb-3 form-password-toggle">--}}
                         {{--                            <label class="form-label" for="password">Confirm Password</label>--}}
                         {{--                            <div class="input-group input-group-merge">--}}
@@ -231,7 +235,6 @@
 </div>
 
 <!-- / Content -->
-
 
 
 <!-- Core JS -->
