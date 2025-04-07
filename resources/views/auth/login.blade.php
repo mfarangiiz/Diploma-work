@@ -106,6 +106,11 @@
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
+                        <div class="mb-3 text-center">
+                            <span>Akkauntingiz yo'qmi?</span>
+                            <a href="{{ route('register') }}" class="btn btn-link">Ro'yxatdan o'tish</a>
+                        </div>
+
                         <div class="mb-3">
                             <button class="btn btn-primary d-grid w-100" type="submit">Tizimga kirish</button>
                         </div>
