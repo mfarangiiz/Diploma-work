@@ -13,7 +13,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{{ route('motorika.store') }}" class="prevent-duplicate-submit">
+                            <form method="POST" action="{{ route('motorika.store') }}" enctype="multipart/form-data" class="prevent-duplicate-submit">
                                 @csrf
                                 <div class="mb-3">
 
@@ -52,7 +52,8 @@
 
                                 <div class="col mb-3">
                                     <label for="dobExLarge" class="form-label">Video</label>
-                                    <input type="url" id="dobExLarge" name="video" class="form-control" accept="video/*"
+                                    <input id="dobExLarge" type="file" name="video" class="form-control"
+                                           accept="video/*"
                                            value="{{ old('video') }}" required/>
                                 </div>
 

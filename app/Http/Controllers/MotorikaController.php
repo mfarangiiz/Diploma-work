@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Abakus;
 use App\Http\Requests\StoreAbakusRequest;
 use App\Http\Requests\UpdateAbakusRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class MotorikaController extends Controller
 {
@@ -32,17 +34,22 @@ class MotorikaController extends Controller
     public function store(StoreAbakusRequest $request)
     {
 
+        $file = $request->file('video');
 
-        $embedUrl = $this->getYouTubeEmbedUrl($request->video);
+        // Generate unique filename with extension
+        $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
 
-        if (!$embedUrl) {
-            return back()->with('error', 'Invalid YouTube URL!');
-        }
-        $abakus = Abakus::create($request->all());
-        $abakus->status = 2;
-        $abakus->video = $embedUrl;
-        $abakus->save();
-        $abakus->save();
+        // Store the file with the unique name in the "videos" directory on "public" disk
+        $path = $file->storeAs('videos', $filename, 'public');
+
+        $abakus = Abakus::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'age' => $request->age,
+            'status' => 2,
+            'video' => $path
+        ]);
+
         return redirect()->back()->with('success', 'Motorika yaratildi');
     }
 
@@ -67,15 +74,26 @@ class MotorikaController extends Controller
      */
     public function update(UpdateAbakusRequest $request, $id)
     {
-        $embedUrl = $this->getYouTubeEmbedUrl($request->video);
+        $abakus = Abakus::findOrFail($id);
 
-        if (!$embedUrl) {
-            return back()->with('error', 'Invalid YouTube URL!');
+        if ($request->hasFile('video')) {
+            // Delete old video
+            if ($abakus->video && Storage::disk('public')->exists($abakus->video)) {
+                Storage::disk('public')->delete($abakus->video);
+            }
+
+            // Store new video
+            $file = $request->file('video');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('videos', $filename, 'public');
+
+            $abakus->video = $path;
         }
 
-        $abakus = Abakus::find($id)->update($request->all());
+        $abakus->title = $request->title;
+        $abakus->description = $request->description;
+        $abakus->age = $request->age;
 
-        $abakus->video = $embedUrl;
         $abakus->save();
 
         return redirect()->back()->with('success', 'motorika yangilandi');
@@ -87,10 +105,16 @@ class MotorikaController extends Controller
      */
     public function destroy($id)
     {
-        dd('id');
-        Abakus::findorfail($id)->delete();
-        return redirect()->back()->with('success', 'Motorika o`chirildi');
+        $abakus = Abakus::findOrFail($id);
+
+        // Check if it's a stored file (not a YouTube link)
+        if ($abakus->video && !str_contains($abakus->video, 'youtube.com') && Storage::disk('public')->exists($abakus->video)) {
+            Storage::disk('public')->delete($abakus->video);
+        }
+
+        $abakus->delete();
     }
+
     private function getYouTubeEmbedUrl($url)
     {
         preg_match('/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|user\/.+?#v\/|.+?&v=))([^"&?\/\s]{11})/', $url, $matches);

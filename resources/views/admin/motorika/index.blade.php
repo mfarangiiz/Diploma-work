@@ -42,7 +42,13 @@
                             <td>{{ $motorika->title }}</td>
                             <td>{{ $motorika->description }}</td>
                             <td>{{ $motorika->age }}</td>
-                            <td>{{ $motorika->video }}</td>
+                            <td>
+                                <video width="400" controls>
+                                    <source src="{{ asset(asset('storage/' . $motorika->video)) }}"
+                                            type="{{ Storage::mimeType('storage/videos' . $motorika->video) }}">
+                                    Your browser does not support HTML5 video.
+                                </video>
+                            </td>
                             <td>
                                 <div class="d-flex">
 

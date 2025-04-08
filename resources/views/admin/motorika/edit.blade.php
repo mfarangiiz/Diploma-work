@@ -53,9 +53,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="age_group" class="form-label">Video</label>
-                        <input type="url" id="dobExLarge" name="video" class="form-control" accept="video/*"
-                               value="{{ $motorika->video??old('video') }}" required/>
+                        <label for="dobExLarge" class="form-label">Video</label>
+                        <input  id="dobExLarge" type="file" name="video" class="form-control" accept="video/*"
+                                value="{{ old('video') }}" required/>
                     </div>
 
                     <div class="modal-footer">
