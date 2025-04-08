@@ -118,11 +118,37 @@
 </div>
 
 <!-- Core JS -->
+
+<script>
+    const chatModal = document.getElementById('chatModal');
+
+    chatModal.addEventListener('shown.bs.modal', function () {
+        const userId = "{{ $user->id ?? auth()->id() }}"; // Ensure you're using the correct user id
+
+        fetch(`/admin/chat/read/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).then(() => {
+            // Remove notification badge once the message is marked as seen
+            const badge = document.querySelector('#chatButton .badge');
+            if (badge) {
+                badge.remove();
+            }
+        });
+    });
+
+
+</script>
 <!-- build:js asset/vendor/js/core.js -->
 <script src="{{asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
 <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+
 
 <script src="{{asset('assets/vendor/js/menu.js')}}"></script>
 <!-- endbuild -->

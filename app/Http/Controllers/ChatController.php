@@ -20,6 +20,7 @@ class ChatController extends Controller
             Chat::create([
                 'user_id' => auth()->id(),
                 'message' => $request->message,
+                'answered' => 0,
                 'status' => 0,
             ]);
 
@@ -36,16 +37,34 @@ class ChatController extends Controller
             'message' => 'required'
         ]);
 
-        $user = User::query()->findOrFail($id);
-
-        Chat::query()->where('user_id', auth()->id())->where('answered', 0)->update(['answered' => 1]);
+        Chat::query()->where('user_id', $id)->where('answered', 0)->update(['answered' => 1]);
 
         Chat::create([
-            'user_id' => $user->id,
+            'user_id' => $id,
             'message' => $request->message,
             'status' => 1,
         ]);
         return redirect()->back()->with('success', 'Xabar Yuborildi');
+    }
+
+    public function markAsRead(User $user)
+    {
+        Chat::where('user_id', $user->id)
+            ->where('status', 0) // messages from user
+            ->where('answered', 0)
+            ->update(['answered' => 1]);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function markAsAnswered(Request $request)
+    {
+        Chat::where('user_id', auth()->id())
+            ->where('answered', 0)
+            ->where('status', 1)
+            ->update(['answered' => 1]);
+
+        return response()->json(['success' => true]);
     }
 
 }

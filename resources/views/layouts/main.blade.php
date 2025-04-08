@@ -54,17 +54,19 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item position-relative" href="#" id="openChat" data-bs-toggle="modal"
-                                   data-bs-target="#chatModal">
+                                <a class="dropdown-item position-relative" id="chatButton" href="#"
+                                   data-bs-toggle="modal" data-bs-target="#chatModal">
                                     💬 Chat
-                                    @if(auth()->user()->hasMessage())
+                                    @if(auth()->user()->UserHasMessage())
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                1
-                            </span>
+                1
+            </span>
                                     @endif
                                 </a>
                             </li>
+
+
                             <li>
                                 <a class="dropdown-item text-danger" href="#" id="openLogoutModal">
                                     ❌ Chiqish
@@ -224,8 +226,28 @@
 </footer>
 
 {{--alert--}}
-
 <script>
+    const chatModal = document.getElementById('chatModal');
+
+    chatModal.addEventListener('shown.bs.modal', function () {
+        const userId = "{{ $user->id ?? auth()->id() }}"; // Ensure you're using the correct user id
+
+        fetch(`/admin/chat/read/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).then(() => {
+            // Remove notification badge once the message is marked as seen
+            const badge = document.querySelector('#chatButton .badge');
+            if (badge) {
+                badge.remove();
+            }
+        });
+    });
+
     @if(session('success') || session('error'))
     Swal.fire({
         position: "center",
@@ -235,6 +257,41 @@
         timer: 1500
     });
     @endif
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const chatModal = document.getElementById('chatModal');
+
+        chatModal.addEventListener('shown.bs.modal', function () {
+            const chatBox = document.getElementById('chatBox');
+            if (chatBox) {
+                chatBox.scrollTo({top: chatBox.scrollHeight, behavior: 'smooth'});
+            }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const chatModal = document.getElementById('chatModal');
+
+        chatModal.addEventListener('shown.bs.modal', function () {
+            const chatBox = document.getElementById('chatBox');
+            if (chatBox) {
+                chatBox.scrollTo({top: chatBox.scrollHeight, behavior: 'smooth'});
+            }
+
+            // Ajax orqali javobsiz xabarlarni `answered = 1` qilish
+            fetch("{{ route('chat.markAsAnswered') }}", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({})
+            }).then(res => res.json()).then(data => {
+                console.log("Xabarlar javob berilgan deb belgilandi");
+            });
+        });
+    });
+
 </script>
 
 

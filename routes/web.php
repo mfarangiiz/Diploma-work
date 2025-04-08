@@ -43,4 +43,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware(['role:admin']);
 });
 
+
+
+//sms json
+
+Route::put('/admin/chat/read/{user}', [ChatController::class, 'markAsRead'])->name('admin.chat.read');
+Route::put('/admin/chat/read/{id}', [AdminController::class, 'markMessagesAsRead']);
+// web.php
+Route::post('/chat/mark-as-answered', [ChatController::class, 'markAsAnswered'])->name('chat.markAsAnswered');
+
+
+
 require __DIR__ . '/auth.php';
