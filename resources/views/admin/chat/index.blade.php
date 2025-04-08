@@ -16,7 +16,7 @@
                             <td>xabar</td>
                             <td>javob</td>
                         </tr>
-                        @foreach($) @endforeach
+{{--                        @foreach($) @endforeach--}}
                     </div>
                 </div>
             </div>
