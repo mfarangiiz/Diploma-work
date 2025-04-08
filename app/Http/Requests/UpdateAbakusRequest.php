@@ -24,8 +24,9 @@ class UpdateAbakusRequest extends FormRequest
         return [
             'title'=>'required',
             'description'=>'required',
-            'video'=>'required|url',
             'age'=>'required',
+            'video' => 'nullable|mimes:mp4,MP4,mov,avi,wmv|max:50000', // 50MB limit
+
         ];
     }
 }

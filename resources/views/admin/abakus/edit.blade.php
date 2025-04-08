@@ -50,8 +50,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="age_group" class="form-label">Video</label>
-                        <input type="url" id="dobExLarge" name="video" class="form-control" accept="video/*"
-                               value="{{ $abakus->video??old('video') }}" required/>
+                        <input type="file" id="dobExLarge" name="video" class="form-control" accept="video/*"/>
                     </div>
 
                     <div class="modal-footer">
