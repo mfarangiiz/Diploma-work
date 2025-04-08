@@ -1,6 +1,7 @@
-<button type="button" class="btn btn-info me-2 position-relative" data-bs-toggle="modal" data-bs-target="#chatModal">
+<button type="button" id="chatButton" class="btn btn-info me-2 position-relative" data-bs-toggle="modal"
+        data-bs-target="#chatModal">
     <i class="bx bx-message"></i>
-    @if($user->hasMessage())
+    @if($user->AdminhasMessage($user->id))
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
            1
         </span>
@@ -19,7 +20,7 @@
             <div class="modal-body">
                 <div class="chat-box" id="chatBox"
                      style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
-                    @foreach(auth()->user()->chat as $message)
+                    @foreach($user->chat as $message)
                         <li class="list-group-item border-0 d-flex justify-content-{{ ($message->status == 0) ? 'start' : 'end' }}">
                             <div class="p-3 rounded"
                                  style="background-color: #DCF8C6;  max-width: 70%;">
@@ -43,3 +44,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chatModal = document.getElementById('chatModal');
+
+        chatModal.addEventListener('shown.bs.modal', function () {
+            const chatBox = document.getElementById('chatBox');
+            if (chatBox) {
+                chatBox.scrollTo({top: chatBox.scrollHeight, behavior: 'smooth'});
+            }
+        });
+    });
+</script>
+
+
+

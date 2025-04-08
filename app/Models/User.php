@@ -53,12 +53,23 @@ class User extends Authenticatable
 
     public function chat(): HasMany
     {
-        return $this->hasMany(Chat::class,'user_id');
+        return $this->hasMany(Chat::class, 'user_id');
     }
 
-    public function hasMessage(): int
+    public function UserHasMessage(): int
     {
-        $notifications = Chat::query()->where('user_id',auth()->id())->where('answered',0);
+        return Chat::where('user_id', auth()->id())
+            ->where('answered', 0)
+            ->where('status', 1)
+            ->exists();
+    }
+
+
+    public function AdminHasMessage($id): int
+    {
+        // Retrieve unread messages for the user
+        $notifications = Chat::query()->where('user_id', $id)->where('answered', 0)->where('status', 0);
+
         return ($notifications->exists()) ? true : false;
     }
 
