@@ -7,57 +7,48 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">motorikasni tahrirlash</h5>
+                <h5 class="modal-title">motorikasni tahrirlash</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('motorika.update', $motorika->id) }}"
+                <form method="POST"
+                      id="editForm{{ $motorika->id }}"
+                      action="{{ route('motorika.update', $motorika->id) }}"
+                      enctype="multipart/form-data"
                       class="prevent-duplicate-submit">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="name" class="form-label">Sarlavha</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="title"
-                            name="title"
-                            value="{{$motorika->title}}"
-                            autofocus
-                        />
+                        <label class="form-label">Sarlavha</label>
+                        <input type="text" class="form-control" name="title" value="{{ $motorika->title }}" autofocus>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Qoshimcha malumot</label>
-                        <input type="text" class="form-control" id="description" name="description" maxlength="9"
-                               value="{{$motorika->description}}"
-                               required/>
+                        <label class="form-label">Qoshimcha malumot</label>
+                        <input type="text" class="form-control" name="description" value="{{ $motorika->description }}"
+                               maxlength="9" required>
                     </div>
-
                     <div class="mb-3">
-                        <label for="age_group" class="form-label">Yosh</label>
-                        <select name="age" id="age_group" class="form-control" required>
-                            <option value="{{ $motorika->age }}">yoshini tanlash</option>
-
-                            @endphp
-
-                            <option value="5-7" {{ $motorika->age_group == '5-7' ? 'selected' : '' }}>5 - 7 years</option>
-                            <option value="7-10" {{ $motorika->age_group == '7-10' ? 'selected' : '' }}>7 - 10 years
+                        <label class="form-label">Yosh</label>
+                        <select name="age" class="form-control" required>
+                            <option value="5-7" {{ $motorika->age == '5-7' ? 'selected' : '' }}>5 - 7 yosh</option>
+                            <option value="7-10" {{ $motorika->age == '7-10' ? 'selected' : '' }}>7 - 10 yosh</option>
+                            <option value="10-12" {{ $motorika->age == '10-12' ? 'selected' : '' }}>10 - 12 yosh
                             </option>
-                            <option value="10-12" {{ $motorika->age_group == '10-12' ? 'selected' : '' }}>10 - 12 years
-                            </option>
-
                         </select>
-                        @error('age')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
-
                     <div class="mb-3">
-                        <label for="dobExLarge" class="form-label">Video</label>
-                        <input  id="dobExLarge" type="file" name="video" class="form-control" accept="video/*"
-                                value="{{ old('video') }}" required/>
+                        <label class="form-label">Video</label>
+                        <input type="file" name="video" class="form-control" accept="video/*">
+                        <div class="form-text">Agar video o'zgartirilmasa, bo'sh qoldiring</div>
+                        @if($motorika->video)
+                            <div class="mt-2">
+                                <video width="200" controls>
+                                    <source src="{{ asset('storage/' . $motorika->video) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        @endif
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Yopish</button>
                         <button type="submit" class="btn btn-primary">Saqlash</button>
