@@ -164,12 +164,19 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center flex-column flex-sm-row">
                 <!-- Search -->
-                <form action="{{ route('motorika.index') }}" method="GET"
+                <!-- Replace the existing search form with this -->
+                <form action="{{ route('search.lesson') }}" method="GET"
                       class="d-flex align-items-center mb-2 mb-sm-0 me-sm-2">
-                    <input type="text" class="form-control me-2" placeholder="Izlash" name="search"
-                           value="{{ request('search') }}">
-                    <button class="btn btn-primary me-2" type="submit">
-                        <i class="bx bx-search"></i>
+                    <input type="hidden" name = "status" value="2">
+                    <select class="form-select me-2" name="age_filter">
+                        <option value="">Barcha yoshlar</option>
+                        <option value="5-7" {{ request('age_filter') == '5-7' ? 'selected' : '' }}>5-7 yosh</option>
+                        <option value="7-10" {{ request('age_filter') == '7-10' ? 'selected' : '' }}>7-10 yosh</option>
+                        <option value="10-12" {{ request('age_filter') == '10-12' ? 'selected' : '' }}>10-12 yosh
+                        </option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bx bx-filter"></i> Filtr
                     </button>
                 </form>
 

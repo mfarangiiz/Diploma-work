@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::resource('/motorika', MotorikaController::class);
     Route::get('/homepage', [AdminController::class, 'homepage'])->name('homepage');
     Route::post('/homepageUpdate', [AdminController::class, 'honePageSetting'])->name('homepage.update');
+    Route::get('/search/lesson', [AdminController::class, 'searchLesson'])->name('search.lesson');
+
 
 
 });
