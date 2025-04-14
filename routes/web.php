@@ -1,59 +1,72 @@
 <?php
 
-use App\Http\Controllers\AbakusController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ChatController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MotorikaController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    AbakusController,
+    AdminController,
+    ChatController,
+    HomeController,
+    MotorikaController,
+    ProfileController,
+    TeacherController,
+    TestController,
+    UserController
+};
 
-
+// Public routes
 Route::get('/', [HomeController::class, 'index'])->name('index');
-Route::get('darslik/abakus', [HomeController::class, 'abakus'])->name('abakus')->middleware(['auth', 'verified']);
-Route::get('darslik/motorika', [HomeController::class, 'motorika'])->name('motorika')->middleware(['auth', 'verified']);
 Route::get('/bizhaqimizda', [HomeController::class, 'about'])->name('about');
 
-Route::post('message/send', [ChatController::class, 'send'])->middleware(['auth', 'verified'])->name('message.send');
-Route::put('admin/send/{id}', [ChatController::class, 'receive'])->middleware(['auth', 'verified'])->name('admin.message.send');
+// Authenticated routes
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+    // Lessons
+    Route::get('darslik/abakus', [HomeController::class, 'abakus'])->name('abakus');
+    Route::get('darslik/motorika', [HomeController::class, 'motorika'])->name('motorika');
 
+    // Dashboard
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
-//admin
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
-    Route::resource('/users', UserController::class);
-    Route::resource('/abakus', AbakusController::class);
-    Route::resource('/motorika', MotorikaController::class);
-    Route::get('/homepage', [AdminController::class, 'homepage'])->name('homepage');
-    Route::post('/homepageUpdate', [AdminController::class, 'honePageSetting'])->name('homepage.update');
-    Route::get('/search/lesson', [AdminController::class, 'searchLesson'])->name('search.lesson');
+    // Messaging
+    Route::post('message/send', [ChatController::class, 'send'])->name('message.send');
+    Route::put('admin/send/{id}', [ChatController::class, 'receive'])->name('admin.message.send');
+    Route::post('/chat/mark-as-answered', [ChatController::class, 'markAsAnswered'])->name('chat.markAsAnswered');
 
+    // Chat reading
+    Route::put('/admin/chat/read/{user}', [ChatController::class, 'markAsRead'])->name('admin.chat.read');
+    Route::put('/admin/chat/read/{id}', [AdminController::class, 'markMessagesAsRead']);
 
+    // Profile (admin only)
+    Route::middleware(['role:admin'])->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
 
+    // Admin and teacher routes
+    Route::middleware(['role:admin|teacher'])->group(function () {
+
+        // Admin-only resources
+        Route::middleware(['role:admin'])->group(function () {
+            Route::resource('/teachers', TeacherController::class);
+        });
+
+        // Shared access
+        Route::resource('/users', UserController::class);
+        Route::resource('/abakus', AbakusController::class);
+        Route::resource('/motorika', MotorikaController::class);
+
+        // Admin homepage settings
+        Route::get('/homepage', [AdminController::class, 'homepage'])->name('homepage');
+        Route::post('/homepageUpdate', [AdminController::class, 'honePageSetting'])->name('homepage.update');
+        Route::get('/search/lesson', [AdminController::class, 'searchLesson'])->name('search.lesson');
+    });
+
+    // Tests
+    Route::resource('/test', TestController::class);
+    Route::get('student/test/{name}/{id}', [TestController::class, 'startTest'])->name('client.test.show');
+    Route::post('/submit-test', [TestController::class, 'submitTest'])->name('submit.test');
 });
-Route::resource('/test', TestController::class);
-Route::get('student/test/{name}/{id}', [TestController::class, 'startTest'])->name('client.test.show');
-Route::post('/submit-test', [TestController::class, 'submitTest'])->name('submit.test');
 
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware(['role:admin']);
-    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware(['role:admin']);
-});
-
-
-
-//sms json
-
-Route::put('/admin/chat/read/{user}', [ChatController::class, 'markAsRead'])->name('admin.chat.read');
-Route::put('/admin/chat/read/{id}', [AdminController::class, 'markMessagesAsRead']);
-// web.php
-Route::post('/chat/mark-as-answered', [ChatController::class, 'markAsAnswered'])->name('chat.markAsAnswered');
-
-
-
+// Auth scaffolding
 require __DIR__ . '/auth.php';

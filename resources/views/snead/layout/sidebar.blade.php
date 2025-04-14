@@ -81,6 +81,14 @@
                 <div data-i18n="Analytics">Bosh sahifa</div>
             </a>
         </li>
+        @role('admin')
+        <li class="menu-item @if(request()->routeIs('teachers.index')) active @endif">
+            <a href="{{route('teachers.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Analytics">O`qituvchilar</div>
+            </a>
+        </li>
+        @endrole
         <li class="menu-item @if(request()->routeIs('users.index')) active @endif">
             <a href="{{route('users.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>

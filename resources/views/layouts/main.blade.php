@@ -29,11 +29,11 @@
                 <li class="nav-item"><a class="nav-link" href="{{route('abakus')}}">Abacus</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('motorika')}}">Motorika</a></li>
                 @if(auth()->check())
-                    @role('admin')
+                    @hasanyrole('admin|teacher')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
-                    @endrole
+                    @endhasanyrole
 
                     @role('user')
                     <li class="nav-item dropdown">

@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function dashboard()
     {
-        if (auth()->user()->hasRole('admin')) {
+        if (auth()->user()->hasRole('admin||teacher')) {
             return view('admin.dashboard');
         } else
             return redirect('/');
