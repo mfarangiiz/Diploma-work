@@ -24,6 +24,7 @@
 
         <div class="collapse navbar-collapse" id="menuNav">
             <ul class="navbar-nav ms-auto">
+
                 <li class="nav-item"><a class="nav-link" href="{{route('index')}}">Bosh sahifa</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('about')}}">Biz Haqimizda</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('abakus')}}">Abacus</a></li>
@@ -126,7 +127,12 @@
     </div>
 
 
-    <!-- O‘zlashtirishni modali -->
+    @php
+        $percentage = auth()->user()->test_status ?? 0;
+    @endphp
+
+
+        <!-- O‘zlashtirishni modali -->
     <div class="modal fade" id="achievementsModal" tabindex="-1" aria-labelledby="achievementsLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -137,17 +143,20 @@
                 <div class="modal-body text-center">
                     <h4>Umumiy o‘zlashtirish darajasi</h4>
                     <div class="progress" style="height: 30px;">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
-                             id="overallProgress"
-                             style="width: 0%;">
-                            <span id="overallPercentage">0%</span>
+                        <div
+                            class="progress-bar progress-bar-striped progress-bar-animated bg-info d-flex align-items-center justify-content-center"
+                            id="overallProgress"
+                            style="width: {{ $percentage }}%;">
+                            <span id="overallPercentage" class="text-white fw-bold">{{ $percentage }}%</span>
                         </div>
                     </div>
-                    <p class="mt-3">Siz <strong id="totalTests">0</strong> ta test ishladingiz</p>
+                    <p class="mt-3">Siz <strong id="totalTests">{{ $percentage > 0 ? 1 : 0 }}</strong> ta test
+                        ishladingiz</p>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <!-- Chat modali -->
