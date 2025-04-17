@@ -128,9 +128,8 @@
 
 
     @php
-        $percentage = auth()->user()->test_status ?? 0;
+        $percentage = auth()->user()->test_status ?? 1;
     @endphp
-
 
         <!-- O‘zlashtirishni modali -->
     <div class="modal fade" id="achievementsModal" tabindex="-1" aria-labelledby="achievementsLabel" aria-hidden="true">
@@ -157,8 +156,6 @@
         </div>
     </div>
 
-
-
     <!-- Chat modali -->
     <div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -183,7 +180,6 @@
 
                     <form action="{{(route('message.send'))}}" method="post">
                         <div class="input-group mt-3">
-                            @csrf
                             <input type="text" name="message" class="form-control" placeholder="Xabar yozing...">
                             <button class="btn btn-primary">Yuborish</button>
                         </div>

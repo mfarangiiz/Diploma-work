@@ -19,7 +19,7 @@ class HomeController extends Controller
                 'lessons' => Abakus::all()->count(),
             ]);
         } else
-            return redirect('/');
+            return view('admin.users.index',['users'=>User::role('user')->paginate(10)]);
     }
 
 

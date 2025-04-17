@@ -68,6 +68,8 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
+        @role('admin')
+
         <li class="menu-item  @if(request()->routeIs('dashboard')) active @endif">
             <a href="{{route('dashboard')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
@@ -81,7 +83,6 @@
                 <div data-i18n="Analytics">Bosh sahifa</div>
             </a>
         </li>
-        @role('admin')
         <li class="menu-item @if(request()->routeIs('teachers.index')) active @endif">
             <a href="{{route('teachers.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
