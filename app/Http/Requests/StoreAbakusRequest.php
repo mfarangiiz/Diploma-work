@@ -24,7 +24,7 @@ class StoreAbakusRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'required',
-            'video' => 'required|mimes:mp4,MP4,mov,avi,wmv|max:50000', // 50MB limit
+            'video' => 'required|mimes:mp4,MP4,mov,avi,wmv|max:500000', // 500MB limit
         ];
     }
 }

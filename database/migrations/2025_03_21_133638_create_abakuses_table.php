@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('video');
             $table->string('description');
-            $table->tinyInteger('age');
+            $table->string('age');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

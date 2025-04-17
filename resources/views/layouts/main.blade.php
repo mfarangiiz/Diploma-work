@@ -79,7 +79,7 @@
 
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dashboard') }}">Login</a>
+                        <a class="nav-link" href="{{ route('dashboard') }}">Kirish</a>
                     </li>
                 @endif
 
