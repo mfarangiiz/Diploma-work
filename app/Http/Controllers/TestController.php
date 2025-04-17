@@ -70,7 +70,7 @@ class TestController extends Controller
         //
     }
 
-    public function startTest($name,$id)
+    public function startTest($name, $id)
     {
         // Get all tests related to the lesson
         $tests = Test::where('status', $id)->get()->map(function ($test) use ($id) {
@@ -98,6 +98,7 @@ class TestController extends Controller
     {
         $answers = $request->input('answers', []);
         $correctCount = 0;
+        $totalQuestions = count($answers);
 
         foreach ($answers as $questionId => $selectedAnswer) {
             $correctAnswer = Test::find($questionId)->answer;
@@ -106,10 +107,20 @@ class TestController extends Controller
             }
         }
 
+        // Avoid division by zero
+        $percentage = $totalQuestions > 0 ? round(($correctCount / $totalQuestions) * 100, 2) : 0;
+        if ($percentage >= 75) {
+            auth()->user()->update([
+                'test_status' => $correctCount,
+                // Optionally save the percentage too:
+                // 'test_percentage' => $percentage,
+            ]);
+        }
         return redirect()->back()->with([
             'correctCount' => $correctCount,
             'submittedAnswers' => $answers
         ]);
+
     }
 
 }

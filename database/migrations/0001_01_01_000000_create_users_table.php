@@ -19,6 +19,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('test_status')->default(0);
             $table->string('password');
+            $table->integer('test_result')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

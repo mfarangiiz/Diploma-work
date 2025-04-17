@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Abakus;
 use App\Models\HomePage;
+use App\Models\User;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,12 @@ class HomeController extends Controller
 {
     public function dashboard()
     {
-        if (auth()->user()->hasRole('admin||teacher')) {
-            return view('admin.dashboard');
+        if (auth()->user()->hasRole('admin')) {
+            return view('admin.dashboard', [
+                'students' => User::role('user')->count(),
+                'teachers' => User::role('teacher')->count(),
+                'lessons' => Abakus::all()->count(),
+            ]);
         } else
             return redirect('/');
     }
@@ -21,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('index', [
-            'home'=>HomePage::first()
+            'home' => HomePage::first()
         ]);
     }
 

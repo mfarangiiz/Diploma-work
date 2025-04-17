@@ -73,4 +73,5 @@ class User extends Authenticatable
         return ($notifications->exists()) ? true : false;
     }
 
+
 }

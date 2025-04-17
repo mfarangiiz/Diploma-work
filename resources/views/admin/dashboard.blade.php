@@ -50,7 +50,7 @@
                                                 class="badge bg-label-success rounded-pill">{{ now()->format('d-m-y') }}</span>
                                         </div>
                                         <div class="mt-sm-auto">
-                                            <h6 class="mb-0"><b>{{ $teachers }} ta</b></h6>
+                                            <h6 class="mb-0"><b>{{ $teachers??0 }} ta</b></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                                 class="badge bg-label-warning rounded-pill">{{ now()->format('d-m-y') }}</span>
                                         </div>
                                         <div class="mt-sm-auto">
-                                            <h6 class="mb-0">{{ $students }} ta</h6>
+                                            <h6 class="mb-0">{{ $students??0 }} ta</h6>
                                         </div>
                                     </div>
                                     {{--                                    <div id="profileReportChart" class="w-100"--}}
