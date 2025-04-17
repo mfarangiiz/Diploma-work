@@ -161,9 +161,12 @@
                             />
                         </div>
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Telefon raqam</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" maxlength="9"
-                                   required/>
+                            <label for="phone" class="form-label">Telefon Raqam</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text">+998</span>
+                                <input type="tel" id="phone" class="form-control" name="phone"
+                                       pattern="[0-9]{9}" maxlength="9" value="{{ old('phone') }}" required/>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="age_group" class="form-label">Yoshingiz</label>

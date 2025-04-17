@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="col-lg-6 order-lg-2">
-                    <img src="img/graduation.png" class="img-fluid" alt="Hero Image">
+                    <img src="{{ asset('img/graduation.jpg')}}" class="img-fluid" alt="Hero Image">
                 </div>
             </div>
         </div>
