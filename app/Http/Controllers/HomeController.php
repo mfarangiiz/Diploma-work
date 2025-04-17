@@ -18,8 +18,11 @@ class HomeController extends Controller
                 'teachers' => User::role('teacher')->count(),
                 'lessons' => Abakus::all()->count(),
             ]);
-        } else
+        } elseif(auth()->user()->hasRole('teacher')) {
+
             return view('admin.users.index',['users'=>User::role('user')->paginate(10)]);
+        }else
+            return redirect('/');
     }
 
 
