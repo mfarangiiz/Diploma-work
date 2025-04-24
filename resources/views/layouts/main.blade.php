@@ -11,7 +11,9 @@
 </head>
 <body>
 <header class="header">
-    <div class="logo">MenKids</div>
+    <div class="logo">
+        <img src="{{ asset('/storage/logo/logo.png') }}" alt="">
+    </div>
 
     <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">

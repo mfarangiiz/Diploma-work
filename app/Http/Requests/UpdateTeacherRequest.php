@@ -22,7 +22,7 @@ class UpdateTeacherRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            
         ];
     }
 }
