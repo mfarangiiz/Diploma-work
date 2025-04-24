@@ -29,7 +29,7 @@
             <div class="row align-items-center">
 
                 <div class="col-lg-6 about-img order-lg-1">
-                    <img src="{{asset('recourse/img/abakus.png')}}" class="img-fluid" alt="About Image">
+                    <img src="{{ asset('storage/about/abacus.png')}}" class="img-fluid" alt="About Image">
                 </div>
 
                 <div class="col-lg-6 about-text order-lg-2">
@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <img src="img/boy-holding-stack-books.png" alt="Info Image" class="info-img">
+                    <img src="{{ asset('storage/about/t.png')}}"  alt="Info Image" class="info-img">
                 </div>
             </div>
         </div>

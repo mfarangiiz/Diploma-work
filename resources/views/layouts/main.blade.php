@@ -11,7 +11,7 @@
 </head>
 <body>
 <header class="header">
-    <div class="logo">LOGO qo‘yaman</div>
+    <div class="logo">MenKids</div>
 
     <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
@@ -20,8 +20,8 @@
 
         <div class="collapse navbar-collapse" id="menuNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Bosh sahifa</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Biz Haqizda</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Bosh Sahifa</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Biz Haqimizda</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('abakus') }}">Abacus</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('motorika') }}">Motorika</a></li>
                 @if(auth()->check())
@@ -157,9 +157,9 @@
                     <div class="chat-box"
                          style="height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
                         @foreach(auth()->user()->chat as $message)
-                            <li class="list-group-item border-0 d-flex justify-content-{{ ($message->status == 0) ? 'end' : 'start' }}">
+                            <li class="list-group-item border-0 d-flex m-1 justify-content-{{ ($message->status == 1) ? 'start' : 'end' }}">
                                 <div class="p-3 rounded" style="background-color: #DCF8C6; max-width: 70%;">
-                                    <strong>{{ $message->status == 0 ? 'siz' : 'Admin' }}:</strong>
+                                    <strong>{{ $message->status == 1 ? 'O`qituvchi ' : 'Siz' }}:</strong>
                                     <div>{{ $message->message }}</div>
                                 </div>
                             </li>

@@ -37,7 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/admin/chat/read/{id}', [AdminController::class, 'markMessagesAsRead']);
 
     // Profile (admin only)
-    Route::middleware(['role:admin'])->group(function () {
+    Route::middleware(['role:admin|teacher|user'])->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

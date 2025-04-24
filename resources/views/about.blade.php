@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="col-lg-6 order-lg-2">
-                    <img src="{{ asset('img/graduation.jpg')}}" class="img-fluid" alt="Hero Image">
+                    <img src="{{ asset('storage/about/graduation.png')}}" class="img-fluid" alt="Hero Image">
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
             <div class="row align-items-center">
 
                 <div class="col-lg-6 text-center">
-                    <img src="img/komp.png" class="img-fluid about-img" alt="Mental arifmetika platformasi">
+                    <img src="{{ asset('storage/about/komp.png')}}"  class="img-fluid about-img" alt="Mental arifmetika platformasi">
                 </div>
 
                 <div class="col-lg-6">
@@ -53,7 +53,7 @@
                     </p>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <img src="img/abacus.png" alt="Amaliy Darslar" class="practical-img">
+                    <img src="{{ asset('storage/about/abacus.png')}}"  alt="Amaliy Darslar" class="practical-img">
                 </div>
             </div>
         </div>

@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('message');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');            $table->string('message');
             $table->string('answered')->default(0);
-            $table->enum('status', [0, 1]);
+            $table->boolean('status');
             $table->timestamps();
         });
     }

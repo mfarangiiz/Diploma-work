@@ -24,7 +24,7 @@
                         <li class="list-group-item border-0 d-flex justify-content-{{ ($message->status == 0) ? 'start' : 'end' }}">
                             <div class="p-3 rounded"
                                  style="background-color: #DCF8C6;  max-width: 70%;">
-                                <strong>{{ $message->status == 0 ? $message->user->name : 'admin' }}</strong>
+                                <strong>{{ $message->status == 0 ? $message->user->name : 'teacher' }}</strong>
                                 <div>{{ $message->message }}</div>
                             </div>
                         </li>

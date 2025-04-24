@@ -16,16 +16,18 @@ class ChatController extends Controller
 
         $message = Chat::where('user_id', auth()->id())->latest()->first();
 
-        if (!empty($request->message) && (!$message || $message->answered)) {
+
+        if (!empty($request->message)) {
+
             Chat::create([
                 'user_id' => auth()->id(),
                 'message' => $request->message,
                 'answered' => 0,
-                'status' => 0,
+                'status' => 0 ,
             ]);
 
             return redirect()->back()->with('success', 'Xabar yuborildi');
-        }
+        }else
 
         return redirect()->back()->with('error', 'Avvalgi xabaringiz hali javoblanmagan');
 
