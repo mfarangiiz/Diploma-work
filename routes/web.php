@@ -60,6 +60,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/homepage', [AdminController::class, 'homepage'])->name('homepage');
         Route::post('/homepageUpdate', [AdminController::class, 'honePageSetting'])->name('homepage.update');
         Route::get('/search/lesson', [AdminController::class, 'searchLesson'])->name('search.lesson');
+        Route::get('/filter', [AdminController::class, 'filterUser'])->name('filter.student');
     });
 
     // Tests
