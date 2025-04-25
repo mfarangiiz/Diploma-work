@@ -12,8 +12,18 @@
 <body>
 <header class="header">
     <div class="logo">
-        <img src="{{ asset('/storage/logo/logo.png') }}" alt="">
+    <img src="{{ asset('/storage/logo/logo.png') }}" alt="Logo">
+    <span class="brand-name ms-2">
+        <span class="letter letter-1">M</span>
+        <span class="letter letter-2">e</span>
+        <span class="letter letter-3">n</span>
+        <span class="letter letter-4">K</span>
+        <span class="letter letter-1">i</span>
+        <span class="letter letter-2">d</span>
+        <span class="letter letter-3">s</span>
+    </span>
     </div>
+
 
     <nav class="navbar navbar-expand-lg">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">

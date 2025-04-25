@@ -11,7 +11,7 @@
                                 <div class="d-flex justify-content-between flex-wrap align-items-center gap-3">
                                     <div class="d-flex flex-column align-items-start justify-content-between">
                                         <div class="card-title">
-                                            <h5 class="text-nowrap mb-2">O`ituvchilar</h5>
+                                            <h5 class="text-nowrap mb-2">O`qituvchilar</h5>
                                             <span
                                                 class="badge bg-label-success rounded-pill">{{ now()->format('d-m-y') }}</span>
                                         </div>

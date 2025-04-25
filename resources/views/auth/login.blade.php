@@ -15,7 +15,7 @@
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title></title>
+    <title>MenKids</title>
 
     <meta name="description" content=""/>
 
@@ -73,13 +73,59 @@
                 <div class="card-body">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center">
-                        <div class="app-brand-link gap-2">
-                  <span class="app-brand-logo demo">
-                        <img src="{{ asset('assets/Images/login-image.jpg') }}" width="60" alt="Brand Logo"/>
-                  </span>
-                            <span class="app-brand-text demo text-body fw-bolder">Logo</span>
-                        </div>
-                    </div>
+  <div class="app-brand-link d-flex align-items-center gap-1">
+    <div class="logo-img">
+      <img src="{{ asset('/storage/logo/logo.png') }}" alt="Logo">
+    </div>
+    <div class="brand-name">
+      <span class="letter letter-1">M</span>
+      <span class="letter letter-2">e</span>
+      <span class="letter letter-3">n</span>
+      <span class="letter letter-4">K</span>
+      <span class="letter letter-1">i</span>
+      <span class="letter letter-2">d</span>
+      <span class="letter letter-3">s</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .logo-img img {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+  }
+
+  .brand-name {
+    font-size: 30px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    white-space: nowrap;
+  }
+
+  .letter-1 {
+    color: #FFD700;
+  }
+
+  .letter-2 {
+    color: #FF4500;
+  }
+
+  .letter-3 {
+    color: #1E90FF;
+  }
+
+  .letter-4 {
+    color: #32CD32;
+  }
+
+  .app-brand {
+    margin-bottom: 20px;
+  }
+</style>
+
 
                     <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
                         @csrf
