@@ -26,9 +26,14 @@
                                     />
                                 </div>
                                 <div class="mb-3">
+                                    
                                     <label for="phone" class="form-label">Telefon raqam</label>
+                        <div class="input-group input-group-merge">
+
+                                    <span class="input-group-text">+998</span>
                                     <input type="tel" class="form-control" id="phone" name="phone" maxlength="9"
                                            required/>
+                                </div>
                                 </div>
 
                                 <div class="mb-3 form-password-toggle">

@@ -2,21 +2,22 @@
 @section('content')
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Jadval /</span> Foydalanuvchilar</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Jadval /</span> Testlar</h4>
         @include('alerts.success-alert')
         @include('alerts.error-alert')
-
+        
         <div class="modal fade" id="exLargeModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
                         ></button>
                     </div>
+                
 
                     <form method="POST" action="{{ route('test.store') }}">
                         @csrf
@@ -60,6 +61,18 @@
             </div>
         </div>
         <div class="demo-inline-spacing mb-3">
+            
+        <form action="{{ route('filter.test') }}" method="GET"
+                                          class="d-flex align-items-center mb-2 mb-sm-0 me-sm-2">
+                                        <select class="form-select me-2" name="test">
+                                            <option value="">Filter</option>
+                                            <option value="1" {{ request('test_filter') == '5-7' ? 'selected' : '' }}>abakus</option>
+                                            <option value="2" {{ request('test_filter') == '10-12' ? 'selected' : '' }}>motorika</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bx bx-filter"></i> Filtr
+                                        </button>
+                                    </form>
             <button
                 type="button"
                 class="btn btn-primary"

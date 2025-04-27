@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Abakus;
 use App\Models\Chat;
 use App\Models\HomePage;
+use App\Models\Test;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -58,6 +59,18 @@ class AdminController extends Controller
             return view('admin.users.index', ['users' => $motorikaes]);
         else
             return view('admin.users.index', ['users' => $motorikaes]);
+    }
+    public function testFilter(Request $request)
+    {
+        $query = Test::query();
+
+            
+        $query->where('status', $request->test);
+
+        $motorikaes = $query->paginate(10);
+        // dd($motorikaes);
+
+        return view('admin.test.index',['tests'=>$motorikaes]);
     }
 
 }
