@@ -23,14 +23,22 @@
 
 
                         <div class="card-body">
+                            <h3 class="card-title fw-bold">{{ $abakus->title }}</h3>
+                                    <p class="card-text mt-2">{{ $abakus->description }}</p>
+                                    @if ($abakuses->currentPage() == $abakuses->lastPage())
+                                        <a href="{{ route('client.test.show', ['name' => auth()->user()->name, 'id' => 1 ]) }}"
+                                           class="btn btn-info mt-2">
+                                            <i class="bx bxs-graduation me-2"></i> Testni boshlash
+                                        </a>
+                                    @endif
+
                             {{--                            <h5 class="card-title">{{ $abakus->name_video }}</h5>--}}
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row mb-5">
-                <div class="col-md-6 col-lg-8 mx-auto my-auto">
+                <!-- <div class="col-md-6 col-lg-8 mx-auto my-auto">
                     <div class="card table-responsive">
                         <div class="row g-0">
                             <div class="col-md-12">
@@ -48,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="row mb-5">
