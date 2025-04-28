@@ -73,7 +73,7 @@ class TestController extends Controller
     public function startTest($name, $id)
     {
         // Get all tests related to the lesson
-        $tests = Test::where('status', $id)->get()->map(function ($test) use ($id) {
+        $tests = Test::where('status', $id)->where('age',auth()->user()->age)->get()->map(function ($test) use ($id) {
             // Get 2 random incorrect answers from the same lesson, excluding this test's correct answer
             $incorrectAnswers = Test::where('status', $id)
                 ->where('id', '!=', $test->id)
