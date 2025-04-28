@@ -43,14 +43,15 @@
 
                                                                         <label for="name"
                                                                                class="form-label">malumot</label>
-                                                                        <input
+                                                                        <textarea
                                                                             type="text"
                                                                             class="form-control"
                                                                             id="title"
                                                                             name="title"
                                                                             placeholder=""
                                                                             autofocus
-                                                                        />
+                                                                        >
+                                                                        </textarea>
                                                                     </div>
 
 

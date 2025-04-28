@@ -32,7 +32,6 @@
                                 <div class="mb-3">
                                     <label for="description" class="form-label">qoshimcha malumot</label>
                                     <input type="text" class="form-control" id="description" name="description"
-                                           maxlength="9"
                                            required/>
                                 </div>
 
@@ -46,7 +45,7 @@
                                             yosh
                                         </option>
                                         <option value="10-12" {{ old('age_group') == '10-12' ? 'selected' : '' }}>10 -
-                                            12 yosh
+                                            12 yosh~
                                         </option>
                                     </select>
                                 </div>

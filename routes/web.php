@@ -62,6 +62,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/search/lesson', [AdminController::class, 'searchLesson'])->name('search.lesson');
         Route::get('/filter', [AdminController::class, 'filterUser'])->name('filter.student');
         Route::get('/test/filter', [AdminController::class, 'testFilter'])->name('filter.test');
+        Route::get('/test/filter/byage', [AdminController::class, 'testFilterAge'])->name('filter.age.test');
     });
 
     // Tests

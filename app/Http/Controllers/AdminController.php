@@ -72,5 +72,15 @@ class AdminController extends Controller
 
         return view('admin.test.index',['tests'=>$motorikaes]);
     }
+    public function testFilterAge(Request $request)
+    {
+        $query = Test::query();
 
+        $query->where('age', $request->test);
+
+        $motorikaes = $query->paginate(10);
+        // dd($motorikaes);
+
+        return view('admin.test.index',['tests'=>$motorikaes]);
+    }
 }

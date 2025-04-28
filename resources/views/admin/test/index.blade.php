@@ -62,6 +62,20 @@
         </div>
         <div class="demo-inline-spacing mb-3">
             
+        <form action="{{ route('filter.age.test') }}" method="GET"
+                                          class="d-flex align-items-center mb-2 mb-sm-0 me-sm-2">
+                                        <select class="form-select me-2" name="test">
+                                            <option value="">Filter</option>
+                                            <option value="1" {{ request('age') == '5-7' ? 'selected' : '' }}>5-7</option>
+                                            <option value="2" {{ request('age') == '10-12' ? 'selected' : '' }}>7-10</option>
+                                            <option value="2" {{ request('age') == '10-12' ? 'selected' : '' }}>10-12</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bx bx-filter"></i> Filtr yoshdan 
+                                        </button>
+                                    </form>
+        
+            
         <form action="{{ route('filter.test') }}" method="GET"
                                           class="d-flex align-items-center mb-2 mb-sm-0 me-sm-2">
                                         <select class="form-select me-2" name="test">
@@ -70,7 +84,7 @@
                                             <option value="2" {{ request('test_filter') == '10-12' ? 'selected' : '' }}>motorika</option>
                                         </select>
                                         <button type="submit" class="btn btn-primary">
-                                            <i class="bx bx-filter"></i> Filtr
+                                            <i class="bx bx-filter"></i> Filtr darslikdan
                                         </button>
                                     </form>
             <button

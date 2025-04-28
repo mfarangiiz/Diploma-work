@@ -32,7 +32,6 @@
                                 <div class="mb-3">
                                     <label for="description" class="form-label">qoshimcha malumot</label>
                                     <input type="text" class="form-control" id="description" name="description"
-                                           maxlength="9"
                                            required/>
                                 </div>
 
