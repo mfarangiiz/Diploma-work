@@ -11,6 +11,6 @@ class Test extends Model
     /** @use HasFactory<\Database\Factories\TestFactory> */
     use HasFactory;
 
-    protected $fillable = ['question', 'answer', 'status'];
+    protected $fillable = ['question', 'answer', 'status','age'];
 
 }

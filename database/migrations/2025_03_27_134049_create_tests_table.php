@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('question');
             $table->string('answer');
             $table->tinyInteger('status');
+            $table->enum('age', ['5-7', '7-10', '10-12'])->nullable();
             $table->timestamps();
         });
     }

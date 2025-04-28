@@ -48,6 +48,21 @@
                                            value="{{ old('answer') }}"/>
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                    <label for="age_group" class="form-label">Yosh</label>
+                                    <select name="age" id="age" class="form-control" required>
+                                        <option value="5-7" {{ old('age_group') == '5-7' ? 'selected' : '' }}>5 - 7
+                                            yosh
+                                        </option>
+                                        <option value="7-10" {{ old('age_group') == '7-10' ? 'selected' : '' }}>7 - 10
+                                            yosh
+                                        </option>
+                                        <option value="10-12" {{ old('age_group') == '10-12' ? 'selected' : '' }}>10 -
+                                            12 yosh
+                                        </option>
+                                    </select>
+                                </div>
+
                         </div>
 
                         <div class="modal-footer">
@@ -66,9 +81,9 @@
                                           class="d-flex align-items-center mb-2 mb-sm-0 me-sm-2">
                                         <select class="form-select me-2" name="test">
                                             <option value="">Filter</option>
-                                            <option value="1" {{ request('age') == '5-7' ? 'selected' : '' }}>5-7</option>
-                                            <option value="2" {{ request('age') == '10-12' ? 'selected' : '' }}>7-10</option>
-                                            <option value="2" {{ request('age') == '10-12' ? 'selected' : '' }}>10-12</option>
+                                            <option value="5-7" {{ request('age') == '5-7' ? 'selected' : '' }}>5-7</option>
+                                            <option value="7-10" {{ request('age') == '7-10' ? 'selected' : '' }}>7-10</option>
+                                            <option value="10-12" {{ request('age') == '10-12' ? 'selected' : '' }}>10-12</option>
                                         </select>
                                         <button type="submit" class="btn btn-primary">
                                             <i class="bx bx-filter"></i> Filtr yoshdan 
@@ -105,6 +120,7 @@
                         <th scope="col">darslik</th>
                         <th scope="col">Savol</th>
                         <th scope="col">T/J</th>
+                        <th scope="col">age</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -117,6 +133,7 @@
                             <td>{{$test->status == 1? 'Abacus':'Motorika'}}</td>
                             <td>{{$test->question}}</td>
                             <td>{{ $test->answer }}</td>
+                            <td>{{ $test->age }}</td>
                             <td>
                                 <div class="d-flex">
                                     @if(auth()->user()->can('edit'))
