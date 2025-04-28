@@ -25,7 +25,7 @@
                     <div class="mb-3">
                         <label class="form-label">Qoshimcha malumot</label>
                         <input type="text" class="form-control" name="description" value="{{ $motorika->description }}"
-                               maxlength="9" required>
+     required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Yosh</label>
