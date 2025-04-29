@@ -36,7 +36,10 @@ class UserController extends Controller
             'name' => 'required',
             'age' => 'required',
             'phone' => 'required|unique:users',
-            'password' => 'required',
+            'password' => ['required',
+    'min:6',
+    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+    'confirmed' ],
         ]);
         User::create($request->all())->assignRole('user');
         return redirect()->back()->with('success', 'Foydalanuvchi yaratildi');
@@ -70,7 +73,10 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'age' => 'required|in:5-7,7-10,10-12', // or 'in:1,2,3' if using TinyInt
             'phone' => 'required|digits_between:9,15|unique:users,phone,' . $user->id,
-            'password' => 'nullable|min:6', // nullable if you don’t want to require password on edit
+            'password' => ['nullable|min:6',
+    'min:6',
+    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+    'confirmed'] // nullable if you don’t want to require password on edit
         ]);
 
         if ($request->filled('password')) {

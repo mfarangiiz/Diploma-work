@@ -33,7 +33,10 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'digits:9'],
             'age' => ['required'],
-            'password' => ['required', Rules\Password::defaults()],
+            'password' => ['required',
+    'min:6',
+    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+    'confirmed','', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
