@@ -5,7 +5,7 @@
         <div>
 
             <h4 class="fw-bold py-3 mb-2"><span
-                    class="text-muted fw-light">Darslar/</span> {{ $motorika->title }} {{$loop->index+1}}</h4>
+                    class="text-muted fw-light"></span></h4>
 
             <div class="row mb-5">
                 <div class="col-md-6 col-lg-8 mb-2 mx-auto my-auto">
