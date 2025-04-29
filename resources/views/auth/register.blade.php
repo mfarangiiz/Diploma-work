@@ -190,6 +190,20 @@
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
+                        <div class="mb-3 form-password-toggle">
+                            <label class="form-label" for="password">Parol</label>
+                            <div class="input-group input-group-merge">
+                                <input
+                                    type="password"
+                                    id="password_confirmation"
+                                    class="form-control"
+                                    name="password_confirmation"
+                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                />
+                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                            </div>
+                        </div>
+                        
                         <div class="mb-3 text-center">
                             <span>Akkauntingiz bormi?</span>
                             <a href="{{ route('login') }}" class="btn btn-link">Kirish</a>
