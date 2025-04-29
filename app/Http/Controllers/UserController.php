@@ -73,10 +73,9 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'age' => 'required|in:5-7,7-10,10-12', // or 'in:1,2,3' if using TinyInt
             'phone' => 'required|digits_between:9,15|unique:users,phone,' . $user->id,
-            'password' => ['nullable|min:6',
-    'min:6',
-    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
-    'confirmed'] // nullable if you don’t want to require password on edit
+           'password'=>'nullable',
+    'regex:/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/',
+    'confirmed'
         ]);
 
         if ($request->filled('password')) {
