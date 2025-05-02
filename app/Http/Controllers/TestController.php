@@ -51,7 +51,7 @@ class TestController extends Controller
      */
     public function edit(Test $test)
     {
-        //
+        return view('admin.test.edit',['test' => $test]);
     }
 
     /**
@@ -59,7 +59,8 @@ class TestController extends Controller
      */
     public function update(UpdateTestRequest $request, Test $test)
     {
-        //
+        $test->update($request->all());
+        return view('test.index');
     }
 
     /**
@@ -67,7 +68,8 @@ class TestController extends Controller
      */
     public function destroy(Test $test)
     {
-        //
+        $test->delete();
+        return redirect()->back();
     }
 
     public function startTest($name, $id)

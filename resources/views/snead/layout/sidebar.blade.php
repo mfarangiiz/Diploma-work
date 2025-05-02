@@ -117,6 +117,12 @@
                 <div data-i18n="Analytics">Motorika</div>
             </a>
         </li>
+        <li class="menu-item @if(request()->routeIs('comments.index')) active @endif">
+            <a href="{{route('comments.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-comment"></i>
+                <div data-i18n="Analytics">Comment</div>
+            </a>
+        </li>
         <li class="menu-item @if(request()->routeIs('test.index')) active @endif">
             <a href="{{route('test.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-test-tube"></i>

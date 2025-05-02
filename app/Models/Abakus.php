@@ -12,4 +12,11 @@ class Abakus extends Model
 
     protected $fillable = ['title', 'video', 'age', 'description', 'status'];
 
+
+    public function comments()
+{
+    return $this->hasMany(Comment::class, foreignKey: 'course_id');
+}
+
+
 }
