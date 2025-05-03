@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     AbakusController,
     AdminController,
+    CommentController,
     ChatController,
     HomeController,
     MotorikaController,
@@ -16,6 +17,7 @@ use App\Http\Controllers\{
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/bizhaqimizda', [HomeController::class, 'about'])->name('about');
+Route::resource('/comments', CommentController::class);
 
 // Authenticated routes
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -43,7 +45,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
+
     // Admin and teacher routes
+
     Route::middleware(['role:admin|teacher'])->group(function () {
 
         // Admin-only resources

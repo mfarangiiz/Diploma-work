@@ -120,7 +120,8 @@
                         <th scope="col">darslik</th>
                         <th scope="col">Savol</th>
                         <th scope="col">T/J</th>
-                        <th scope="col">age</th>
+                        <th scope="col">yosh</th>
+                        <th scope="col">tahrirlash</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -136,12 +137,12 @@
                             <td>{{ $test->age }}</td>
                             <td>
                                 <div class="d-flex">
-                                    @if(auth()->user()->can('edit'))
+                                    @if(auth()->user()->role('admin'))
                                         <a href="{{ route('test.edit', $test->id) }}"
                                            class="btn btn-icon btn-warning me-2"><i
                                                 class="bx bx-pencil me-2"></i></a>
                                     @endif
-                                    @if(auth()->user()->can('delete'))
+                                    @if(auth()->user()->role('admin'))
                                         <button type="button" class="btn btn-icon btn-danger me-2"
                                                 data-bs-toggle="modal" data-bs-target="#modalToggle{{$test->id}}">
                                             <i class="bx bx-trash-alt"></i></button>
