@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
             'password' => [
                 'required',
                 'min:6',
-                'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+                'regex:/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!$#%]).+$/',
                 'confirmed', // Automatically links password_confirmation
                 Rules\Password::defaults(),
             ],

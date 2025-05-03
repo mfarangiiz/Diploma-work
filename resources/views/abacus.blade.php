@@ -10,7 +10,7 @@
         @endphp
         <div>
             <h4 class="fw-bold py-3 mb-2"><span
-                    class="text-muted fw-light">  </span></h4>
+                    class="text-muted fw-light">Darslar/</span> {{ $abakus->title }} {{$loop->index+1}}</h4>
 
             <div class="row mb-5">
                 <div class="col-md-6 col-lg-8 mb-2 mx-auto my-auto">
@@ -23,22 +23,14 @@
 
 
                         <div class="card-body">
-                            <h3 class="card-title fw-bold">{{ $abakus->title }}</h3>
-                                    <p class="card-text mt-2">{{ $abakus->description }}</p>
-                                    @if ($abakuses->currentPage() == $abakuses->lastPage())
-                                        <a href="{{ route('client.test.show', ['name' => auth()->user()->name, 'id' => 1 ]) }}"
-                                           class="btn btn-info mt-2">
-                                            <i class="bx bxs-graduation me-2"></i> Testni boshlash
-                                        </a>
-                                    @endif
-
                             {{--                            <h5 class="card-title">{{ $abakus->name_video }}</h5>--}}
                         </div>
                     </div>
                 </div>
             </div>
 
-                <!-- <div class="col-md-6 col-lg-8 mx-auto my-auto">
+            <div class="row mb-5">
+                <div class="col-md-6 col-lg-8 mx-auto my-auto">
                     <div class="card table-responsive">
                         <div class="row g-0">
                             <div class="col-md-12">
@@ -56,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
 
             <div class="row mb-5">

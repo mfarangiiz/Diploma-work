@@ -526,6 +526,7 @@ html, body {
 .test-section {
     background-color: #f8f9fa; 
     padding: 50px 0;
+    margin-top: 50px;
 }
 
 .test-section h2 {

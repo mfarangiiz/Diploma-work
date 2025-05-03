@@ -1,18 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
     var videoModal = document.getElementById("videoModal");
-    var videoFrame = document.getElementById("videoFrame");
-
+    var myVideo = document.getElementById("myVideo");
+    var videoSource = document.getElementById("videoSource");
+  
+    // Modal ochilganda
     videoModal.addEventListener("show.bs.modal", function (event) {
-        var button = event.relatedTarget;
-        var videoSrc = button.getAttribute("data-video");
-
-        videoFrame.src = videoSrc;
+      var button = event.relatedTarget;
+      var videoFile = button.getAttribute("data-video");
+  
+      // To‘liq manzil (bu sizning faylingiz qayerda bo‘lsa o‘sha joy)
+      var videoSrc = "/storage/homevideos/" + videoFile + "?v=" + new Date().getTime();
+  
+      videoSource.src = videoSrc;
+      myVideo.load();
     });
-
+  
+    // Modal yopilganda
     videoModal.addEventListener("hidden.bs.modal", function () {
-        videoFrame.src = "";
+      myVideo.pause();
+      myVideo.currentTime = 0;
+      myVideo.load();
     });
-});
+  });
+  
+
 
 
 

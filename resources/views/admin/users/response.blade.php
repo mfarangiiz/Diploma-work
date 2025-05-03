@@ -1,5 +1,5 @@
 <button type="button" id="chatButton" class="btn btn-info me-2 position-relative" data-bs-toggle="modal"
-        data-bs-target="#chatModal">
+        data-bs-target="#chatModal{{ $user->id }}">
     <i class="bx bx-message"></i>
     @if($user->AdminhasMessage($user->id))
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -8,7 +8,7 @@
     @endif
 </button>
 
-<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatLabel" aria-hidden="true">
+<div class="modal fade" id="chatModal{{ $user->id }}"" tabindex="-1" aria-labelledby="chatLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 

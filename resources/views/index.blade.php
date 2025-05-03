@@ -8,9 +8,12 @@
                 <div class="col-lg-6 text-lg-start text-center order-lg-1">
                     <h1 class="hero-title">Mental Arifmetika bilan Aqlni Charxlang!</h1>
                     <p class="hero-text">Biz bilan bolalaringiz aqliy hisobni tez va aniq bajarishni o‘rganadilar.</p>
-                    <button class="hero-btn" data-bs-toggle="modal" data-bs-target="#heroVideoModal">
-                        Ko‘rish
+                    <button class="hero-btn" data-bs-toggle="modal" data-bs-target="#videoModal">
+                    Ko‘rish
                     </button>
+                    
+
+
                 </div>
 
                 <div class="col-lg-6 order-lg-2">
@@ -53,10 +56,10 @@
                         <h3 class="card-title">Aqliy rivojlanish</h3>
                         <p class="card-text">Mental arifmetika bolalarning tafakkur va mantiqiy fikrlash qobiliyatini
                             o'stiradi, rivojlantiradi.</p>
-                        <button class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#videoModal1"
-                                data-video="videos/aqliy_rivojlanish.mp4">
-                            Ko‘rish
-                        </button>
+                            <!--<button class="hero-btn" data-bs-toggle="modal" data-bs-target="#videoModal" 
+                            data-video="home2.mp4">Ko‘rish
+                         </button>-->
+
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -67,10 +70,10 @@
                         <h3 class="card-title">O'sish va taraqqiyot</h3>
                         <p class="card-text">Doimiy mashg‘ulotlar bolalarda intizom va o‘zini o‘zi rivojlantirish
                             ko‘nikmasini shakllantiradi.</p>
-                        <button class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#videoModal2"
+                       <!-- <button class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#videoModal2"
                                 data-video="videos/osish_taraqqiyot.mp4">
                             Ko‘rish
-                        </button>
+                        </button>-->
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -81,46 +84,49 @@
                         <h3 class="card-title">O‘zlashtirish</h3>
                         <p class="card-text">Mental arifmetika o‘quvchilarni mukofot va sertifikatlar bilan
                             rag‘batlantirishga yordam beradi.</p>
-                        <button class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#videoModal3"
+                        <!--<button class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#videoModal3"
                                 data-video="videos/ozlashtirish.mp4">
                             Ko‘rish
-                        </button>
+                        </button>-->
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <div class="modal fade" id="videoModal1" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="videoModalLabel">📺 Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="card" style="display: flex; justify-content: center; align-items: center;">
-
-                    {{--                    //iframe--}}
-
-
-                </div>
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">📺 Video</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+            </div>
+            <div class="modal-body text-center">
+                <video id="myVideo" width="100%" controls>
+                    <source src="{{ asset('/storage/homevideos/herosection.mp4') }}" type="video/mp4">
+                    Sizning brauzeringiz video tag'ini qo'llab-quvvatlamaydi.
+                </video>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="videoModal2" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="videoModalLabel">📺 Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="card" style="display: flex; justify-content: center; align-items: center;">
-                    {{--                    //iframe--}}
+</div>
 
-                </div>
-            </div>
-        </div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">📺 Video</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+      </div>
+      <div class="modal-body text-center">
+        <video id="myVideo" width="100%" controls>
+          <source id="videoSource" src="" type="video/mp4">
+          Sizning brauzeringiz video tag'ini qo'llab-quvvatlamaydi.
+        </video>
+      </div>
     </div>
+  </div>
+</div>
 
     <div class="modal fade" id="videoModal3" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

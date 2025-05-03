@@ -191,7 +191,7 @@
                             </div>
                         </div>
                         <div class="mb-3 form-password-toggle">
-                            <label class="form-label" for="password">Parol</label>
+                            <label class="form-label" for="password">Parolni tasdiqlash</label>
                             <div class="input-group input-group-merge">
                                 <input
                                     type="password"
