@@ -53,6 +53,35 @@
                 </div>
             </div> -->
 
+            <!-- Comments Section -->
+            <div class="col-md-6 col-lg-8 mx-auto">
+                <div class="card mt-3 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Fikrlar</h5>
+
+                        <!-- Display existing comments -->
+                        @foreach($$motorika->comments as $comment)
+                            <div class="mb-2 border-bottom pb-2">
+                                <strong>{{ $comment->user->name }}</strong>
+                                <span class="text-muted small">· {{ $comment->created_at->diffForHumans() }}</span>
+                                <p class="mb-0">{{ $comment->taxt }}</p>
+                            </div>
+                        @endforeach
+
+                        <!-- Add new comment -->
+                        <form action="{{ route('comments.store') }}" method="POST" class="mt-3">
+                            @csrf
+                            <input type="hidden" name="video_id" value="{{ $$motorika->id }}">
+                            <div class="form-floating mb-2">
+                                <textarea class="form-control" placeholder="Fikringizni yozing..." name="content" style="height: 100px;" required></textarea>
+                                <label>Kommentariya</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm">Yuborish</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="row mb-5">
                 <div class="d-flex justify-content-center">
