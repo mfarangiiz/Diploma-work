@@ -56,18 +56,28 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
         // Shared access
+
         Route::resource('/users', UserController::class);
         Route::resource('/abakus', AbakusController::class);
         Route::resource('/motorika', MotorikaController::class);
 
         // Admin homepage settings
+
         Route::get('/homepage', [AdminController::class, 'homepage'])->name('homepage');
         Route::post('/homepageUpdate', [AdminController::class, 'honePageSetting'])->name('homepage.update');
         Route::get('/search/lesson', [AdminController::class, 'searchLesson'])->name('search.lesson');
         Route::get('/filter', [AdminController::class, 'filterUser'])->name('filter.student');
         Route::get('/test/filter', [AdminController::class, 'testFilter'])->name('filter.test');
         Route::get('/test/filter/byage', [AdminController::class, 'testFilterAge'])->name('filter.age.test');
+
+        //new test
+
+
     });
+
+    Route::get('/math-test', [TestController::class, 'showForm']);
+    Route::post('/generate-question', [TestController::class, 'generate']);
+    Route::post('/submit-answer', [TestController::class, 'submit']);
 
     // Tests
     Route::resource('/test', TestController::class);

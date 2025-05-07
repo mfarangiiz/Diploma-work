@@ -66,7 +66,7 @@
 }
 </style>
 
-           
+
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
@@ -123,12 +123,12 @@
                 <div data-i18n="Analytics">Comment</div>
             </a>
         </li>
-        <li class="menu-item @if(request()->routeIs('test.index')) active @endif">
-            <a href="{{route('test.index')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-test-tube"></i>
-                <div data-i18n="Analytics">Test</div>
-            </a>
-        </li>
+{{--        <li class="menu-item @if(request()->routeIs('test.index')) active @endif">--}}
+{{--            <a href="{{route('test.index')}}" class="menu-link">--}}
+{{--                <i class="menu-icon tf-icons bx bx-test-tube"></i>--}}
+{{--                <div data-i18n="Analytics">Test</div>--}}
+{{--            </a>--}}
+{{--        </li>--}}
         <!-- Layouts -->
     </ul>
 </aside>

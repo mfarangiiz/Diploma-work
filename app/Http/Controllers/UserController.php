@@ -37,9 +37,9 @@ class UserController extends Controller
             'age' => 'required',
             'phone' => 'required|unique:users',
             'password' => ['required',
-    'min:6',
-    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
-    'confirmed' ],
+                'min:6',
+                'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+            ],
         ]);
         User::create($request->all())->assignRole('user');
         return redirect()->back()->with('success', 'Foydalanuvchi yaratildi');
@@ -73,9 +73,9 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'age' => 'required|in:5-7,7-10,10-12', // or 'in:1,2,3' if using TinyInt
             'phone' => 'required|digits_between:9,15|unique:users,phone,' . $user->id,
-           'password'=>'nullable',
-    'regex:/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/',
-    'confirmed'
+            'password' => 'nullable',
+            'regex:/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/',
+            'confirmed'
         ]);
 
         if ($request->filled('password')) {
