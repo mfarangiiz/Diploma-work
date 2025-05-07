@@ -5,33 +5,32 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow-sm p-3">
-                    <h2 class="text-center text-primary mb-3">Math Test</h2>
-                    <!-- Question and Answer Section -->
+                    <h2 class="text-center text-primary mb-3">Matematika Testi</h2>
+
                     @if (isset($expression))
                         <div class="mt-4 p-3 bg-light rounded shadow-sm">
-                            <!-- Timer Section -->
+
                             <div class="text-center mb-3">
                                 <span class="badge bg-danger p-2">
-                                    Time Left: <span id="timerDisplay" class="fw-bold">{{ $timer ?? 30 }}s</span>
+                                    Qolgan vaqt: <span id="timerDisplay" class="fw-bold">{{ $timer ?? 30 }}s</span>
                                 </span>
                             </div>
-                            <!-- Question Display -->
+
                             <div class="mb-3">
-                                <p class="text-muted mb-1">Question:</p>
+                                <p class="text-muted mb-1">Savol:</p>
                                 <h4 class="text-center">{{ $expression }}</h4>
                             </div>
 
-                            <!-- Answer Form -->
                             @if (!isset($result))
                                 <form method="POST" action="/submit-answer">
                                     @csrf
                                     <div class="mb-3">
                                         <input type="number" name="answer" class="form-control"
-                                               placeholder="Enter your answer" required>
+                                               placeholder="Javobingizni kiriting" required>
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" id="submitBtn" class="btn btn-success w-100">
-                                            Submit Answer
+                                            Javobni yuborish
                                         </button>
                                     </div>
                                 </form>
@@ -39,31 +38,30 @@
                         </div>
                     @endif
 
-                    <!-- Result Section -->
                     @if (isset($result))
                         <div id="resultBox" class="mt-4 p-3 bg-light rounded shadow-sm">
                             <div class="text-center">
                                 <h4 class="{{ $result == 'Correct!' ? 'text-success' : 'text-danger' }} mb-3">
-                                    {{ $result }}
+                                    {{ $result == 'Correct!' ? 'To‘g‘ri!' : 'Noto‘g‘ri!' }}
                                 </h4>
 
                                 <div class="row mb-3">
                                     <div class="col-6">
                                         <div class="p-2 border rounded">
-                                            <small class="text-muted">Your Answer</small>
+                                            <small class="text-muted">Sizning javobingiz</small>
                                             <div class="fw-bold">{{ $user_answer }}</div>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="p-2 border rounded">
-                                            <small class="text-muted">Correct Answer</small>
+                                            <small class="text-muted">To‘g‘ri javob</small>
                                             <div class="fw-bold">{{ $correct_answer }}</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <a href="/math-test" class="btn btn-outline-primary">
-                                    Try Again
+                                    Qayta urinib ko‘rish
                                 </a>
                             </div>
                         </div>
@@ -73,15 +71,14 @@
         </div>
     </div>
 
-    <!-- Modal Version (Optional) -->
     @if (isset($expression) && !isset($result))
         <div class="modal fade show" id="questionModal" tabindex="-1" aria-labelledby="questionModalLabel" style="display: block; padding-right: 15px;" aria-modal="true" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="questionModalLabel">Math Test Question</h5>
+                        <h5 class="modal-title" id="questionModalLabel">Matematika savoli</h5>
                         <span class="badge bg-danger ms-auto">
-                            Time: <span id="modalTimerDisplay">{{ $timer ?? 30 }}s</span>
+                            Vaqt: <span id="modalTimerDisplay">{{ $timer ?? 30 }}s</span>
                         </span>
                     </div>
                     <div class="modal-body">
@@ -92,10 +89,10 @@
                             @csrf
                             <div class="mb-3">
                                 <input type="number" name="answer" class="form-control"
-                                       placeholder="Enter your answer" required>
+                                       placeholder="Javobingizni kiriting" required>
                             </div>
                             <button type="submit" id="modalSubmitBtn" class="btn btn-success w-100">
-                                Submit Answer
+                                Javobni yuborish
                             </button>
                         </form>
                     </div>
@@ -105,7 +102,6 @@
         <div class="modal-backdrop fade show"></div>
     @endif
 
-    <!-- Timer Script -->
     @if (isset($expression) && !isset($result))
         <script>
             let timer = {{ $timer ?? 30 }};
@@ -128,7 +124,7 @@
                         buttons.forEach(btn => {
                             if (btn) {
                                 btn.disabled = true;
-                                btn.textContent = 'Time Expired';
+                                btn.textContent = 'Vaqt tugadi';
                                 btn.classList.remove('btn-success');
                                 btn.classList.add('btn-secondary');
                             }

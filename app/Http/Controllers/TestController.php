@@ -58,7 +58,7 @@ class TestController extends Controller
             'timer' => $timer
         ]);
 
-        return view('test_answering', [
+        return view('test', [
             'expression' => $expression,
             'timer' => $timer,
         ]);
@@ -72,7 +72,7 @@ class TestController extends Controller
 
         $result = $isCorrect ? 'Correct!' : 'Incorrect!';
 
-        return view('test_answering', [
+        return view('test', [
             'expression' => session('expression'),
             'correct_answer' => $correctAnswer,
             'user_answer' => $userAnswer,
