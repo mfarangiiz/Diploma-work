@@ -1,71 +1,38 @@
 @extends('layouts.main')
 @section('content')
 
-    <div class="container h-100 d-flex align-items-center justify-content-center">
-        <div class="row w-100">
-            <div class="col-md-10 mx-auto">
-                <div class="card shadow-sm p-4" style="min-height: 70vh;"> <!-- adjust height -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm m-4 p-3">
                     <h2 class="text-center text-primary mb-3">Matematika testi</h2>
 
                     <!-- Filters Form (always visible) -->
                     <form method="POST" action="/generate-question" class="mb-3">
                         @csrf
-                        <div class="d-flex">
-                            <div class="row g-2 mb-3">
-                                <label for="count" class="form-label">Sonlar soni:</label>
-                                <select id="count" name="count" class="form-select" required>
-                                    @foreach ([2, 3, 4, 5] as $num)
-                                        <option value="{{ $num }}">{{ $num }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="difficulty" class="form-label">Qiyinchilik darajasi:</label>
-                                <select id="difficulty" name="difficulty" class="form-select" required>
-                                    <option value="easy">Oson</option>
-                                    <option value="medium">O‘rtacha</option>
-                                    <option value="hard">Qiyin</option>
-                                </select>
-                                <label for="timer" class="form-label">Vaqt (soniyada):</label>
-                                <input type="number" id="timer" name="timer" value="30" min="5" class="form-control"
-                                       required>
-                            </div>
+                        <div class="row g-2 mb-3">
+                            <label for="count" class="form-label">Sonlar soni:</label>
+                            <select id="count" name="count" class="form-select" required>
+                                @foreach ([2, 3, 4, 5] as $num)
+                                    <option value="{{ $num }}">{{ $num }}</option>
+                                @endforeach
+                            </select>
 
+                            <label for="difficulty" class="form-label">Qiyinchilik darajasi:</label>
+                            <select id="difficulty" name="difficulty" class="form-select" required>
+                                <option value="easy">Oson</option>
+                                <option value="medium">O‘rtacha</option>
+                                <option value="hard">Qiyin</option>
+                            </select>
+
+                            <label for="timer" class="form-label">Vaqt (soniyada):</label>
+                            <input type="number" id="timer" name="timer" value="30" min="5" class="form-control" required>
                         </div>
+
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary px-4">
-                                Testni boshlash
-                            </button>
+                            <button type="submit" class="btn btn-primary px-4">Testni boshlash</button>
                         </div>
                     </form>
-
-                    <!-- Question and Answer Section -->
-                    @if (isset($expression))
-                        <div class="mt-4 p-3 bg-light rounded shadow-sm">
-                            <div class="text-center mb-3">
-                            <span class="badge bg-danger p-2">
-                                Qolgan vaqt: <span id="timerDisplay" class="fw-bold">{{ $timer ?? 30 }}s</span>
-                            </span>
-                            </div>
-                            <div class="mb-3">
-                                <p class="text-muted mb-1">Savol:</p>
-                                <h4 class="text-center">{{ $expression }}</h4>
-                            </div>
-
-                            @if (!isset($result))
-                                <form method="POST" action="/submit-answer">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <input type="number" name="answer" class="form-control"
-                                               placeholder="Javobingizni kiriting" required>
-                                    </div>
-                                    <div class="text-center">
-                                        <button type="submit" id="submitBtn" class="btn btn-success w-100">
-                                            Javobni yuborish
-                                        </button>
-                                    </div>
-                                </form>
-                            @endif
-                        </div>
-                    @endif
 
                     <!-- Result Section -->
                     @if (isset($result))
@@ -90,27 +57,55 @@
                                     </div>
                                 </div>
 
-                                <a href="/math-test" class="btn btn-outline-primary">
-                                    Yana urinib ko‘ring
-                                </a>
+                                <a href="/math-test" class="btn btn-outline-primary">Yana urinib ko‘ring</a>
                             </div>
                         </div>
                     @endif
-
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal for Question -->
+    @if (isset($expression) && !isset($result))
+        <div class="modal fade show" id="questionModal" tabindex="-1" aria-labelledby="questionModalLabel" style="display: block;" aria-modal="true" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content shadow">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="questionModalLabel">Savol</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center mb-3">
+                    <span class="badge bg-danger p-2">
+                        Qolgan vaqt: <span id="modalTimerDisplay" class="fw-bold">{{ $timer ?? 30 }}s</span>
+                    </span>
+                        </div>
+                        <h4 class="text-center mb-3">{{ $expression }}</h4>
+                        <form method="POST" action="/submit-answer">
+                            @csrf
+                            <input type="hidden" name="timer" value="{{ $timer }}">
+                            <div class="mb-3">
+                                <input type="number" name="answer" class="form-control" placeholder="Javobingizni kiriting" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" id="modalSubmitBtn" class="btn btn-success w-100">Javobni yuborish</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal backdrop -->
+        <div class="modal-backdrop fade show"></div>
+    @endif
 
     <!-- Timer Script -->
     @if (isset($expression) && !isset($result))
         <script>
             let timer = {{ $timer ?? 30 }};
             const updateTimerDisplay = (value) => {
-                const displays = document.querySelectorAll('#timerDisplay, #modalTimerDisplay');
-                displays.forEach(display => {
-                    if (display) display.textContent = value + 's';
-                });
+                const displays = document.querySelectorAll('#modalTimerDisplay');
+                displays.forEach(display => display.textContent = value + 's');
             };
 
             function startTimer() {
@@ -118,18 +113,15 @@
                 const interval = setInterval(() => {
                     timer--;
                     updateTimerDisplay(timer);
-
                     if (timer <= 0) {
                         clearInterval(interval);
-                        const buttons = document.querySelectorAll('#submitBtn, #modalSubmitBtn');
-                        buttons.forEach(btn => {
-                            if (btn) {
-                                btn.disabled = true;
-                                btn.textContent = 'Time Expired';
-                                btn.classList.remove('btn-success');
-                                btn.classList.add('btn-secondary');
-                            }
-                        });
+                        const submitBtn = document.getElementById('modalSubmitBtn');
+                        if (submitBtn) {
+                            submitBtn.disabled = true;
+                            submitBtn.textContent = 'Vaqt tugadi';
+                            submitBtn.classList.remove('btn-success');
+                            submitBtn.classList.add('btn-secondary');
+                        }
                     }
                 }, 1000);
             }
@@ -137,4 +129,5 @@
             window.addEventListener('load', startTimer);
         </script>
     @endif
+
 @endsection
