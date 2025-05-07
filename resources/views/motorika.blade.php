@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-<!-- 
+<!--
             <div class="row mb-5">
                 <div class="col-md-6 col-lg-8 mx-auto my-auto">
                     <div class="card table-responsive">
@@ -60,7 +60,7 @@
                         <h5 class="card-title">Fikrlar</h5>
 
                         <!-- Display existing comments -->
-                        @foreach($$motorika->comments as $comment)
+                        @foreach($motorika->comments as $comment)
                             <div class="mb-2 border-bottom pb-2">
                                 <strong>{{ $comment->user->name }}</strong>
                                 <span class="text-muted small">· {{ $comment->created_at->diffForHumans() }}</span>
@@ -71,7 +71,7 @@
                         <!-- Add new comment -->
                         <form action="{{ route('comments.store') }}" method="POST" class="mt-3">
                             @csrf
-                            <input type="hidden" name="video_id" value="{{ $$motorika->id }}">
+                            <input type="hidden" name="video_id" value="{{ $motorika->id }}">
                             <div class="form-floating mb-2">
                                 <textarea class="form-control" placeholder="Fikringizni yozing..." name="content" style="height: 100px;" required></textarea>
                                 <label>Kommentariya</label>
