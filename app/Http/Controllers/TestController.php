@@ -16,7 +16,7 @@ class TestController extends Controller
 
     public function showForm()
     {
-        return view('');
+        return view('test');
     }
 
     public function generate(Request $request)
@@ -58,7 +58,7 @@ class TestController extends Controller
             'timer' => $timer
         ]);
 
-        return view('admin.test.new_test', [
+        return view('test_answering', [
             'expression' => $expression,
             'timer' => $timer,
         ]);
@@ -72,7 +72,7 @@ class TestController extends Controller
 
         $result = $isCorrect ? 'Correct!' : 'Incorrect!';
 
-        return view('admin.test.new_test', [
+        return view('test_answering', [
             'expression' => session('expression'),
             'correct_answer' => $correctAnswer,
             'user_answer' => $userAnswer,
