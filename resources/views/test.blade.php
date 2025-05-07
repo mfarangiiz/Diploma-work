@@ -10,29 +10,26 @@
                     <!-- Filters Form (always visible) -->
                     <form method="POST" action="/generate-question" class="mb-3">
                         @csrf
-                        <div class="row g-2 mb-3">
-                            <div class="col-md-4">
+                        <div class="d-flex">
+                            <div class="row g-2 mb-3">
                                 <label for="count" class="form-label">Sonlar soni:</label>
                                 <select id="count" name="count" class="form-select" required>
                                     @foreach ([2, 3, 4, 5] as $num)
                                         <option value="{{ $num }}">{{ $num }}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <div class="col-md-4">
                                 <label for="difficulty" class="form-label">Qiyinchilik darajasi:</label>
                                 <select id="difficulty" name="difficulty" class="form-select" required>
                                     <option value="easy">Oson</option>
                                     <option value="medium">O‘rtacha</option>
                                     <option value="hard">Qiyin</option>
                                 </select>
-                            </div>
-                            <div class="col-md-4">
                                 <label for="timer" class="form-label">Vaqt (soniyada):</label>
-                                <input type="number" id="timer" name="timer" value="30" min="5" class="form-control" required>
+                                <input type="number" id="timer" name="timer" value="30" min="5" class="form-control"
+                                       required>
                             </div>
-                        </div>
 
+                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary px-4">
                                 Testni boshlash
