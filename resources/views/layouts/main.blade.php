@@ -9,12 +9,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
 <header class="header">
     <div class="logo">
-    <img src="{{ asset('/storage/logo/logo.png') }}" alt="Logo">
-    <span class="brand-name ms-2">
+        <img src="{{ asset('/storage/logo/logo.png') }}" alt="Logo">
+        <span class="brand-name ms-2">
         <span class="letter letter-1">M</span>
         <span class="letter letter-2">e</span>
         <span class="letter letter-3">n</span>
@@ -158,7 +172,7 @@
                             <span class="text-white fw-bold">{{ $percentage }}%</span>
                         </div>
                     </div>
-{{--                    <p class="mt-3">Siz hali testlarni to‘liq ishlab chiqmadingiz</p>--}}
+                    {{--                    <p class="mt-3">Siz hali testlarni to‘liq ishlab chiqmadingiz</p>--}}
                 </div>
             </div>
         </div>

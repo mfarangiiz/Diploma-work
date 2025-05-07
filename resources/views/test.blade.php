@@ -1,10 +1,10 @@
 @extends('layouts.main')
 @section('content')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-sm m-4 p-3">
+    <div class="container h-100 d-flex align-items-center justify-content-center">
+        <div class="row w-100">
+            <div class="col-md-10 mx-auto">
+                <div class="card shadow-sm p-4" style="min-height: 70vh;"> <!-- adjust height -->
                     <h2 class="text-center text-primary mb-3">Matematika testi</h2>
 
                     <!-- Filters Form (always visible) -->
