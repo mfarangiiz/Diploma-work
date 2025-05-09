@@ -26,7 +26,8 @@
                             </select>
 
                             <label for="timer" class="form-label">Vaqt (soniyada):</label>
-                            <input type="number" id="timer" name="timer" value="30" min="5" class="form-control" required>
+                            <input type="number" id="timer" name="timer" value="30" min="5" class="form-control"
+                                   required>
                         </div>
 
                         <div class="text-center">
@@ -66,7 +67,8 @@
         </div>
     </div>
     @if (isset($expression) && !isset($result))
-        <div class="modal fade show" id="questionModal" tabindex="-1" aria-labelledby="questionModalLabel" style="display: block;" aria-modal="true" role="dialog">
+        <div class="modal fade show" id="questionModal" tabindex="-1" aria-labelledby="questionModalLabel"
+             style="display: block;" aria-modal="true" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content shadow">
                     <div class="modal-header">
@@ -83,13 +85,15 @@
                             </div>
                             <h4 class="text-center mb-3">{{ $expression }}</h4>
                             <div class="mb-3">
-                                <input type="number" name="answer" class="form-control" placeholder="Javobingizni kiriting" required>
+                                <input type="number" name="answer" class="form-control"
+                                       placeholder="Javobingizni kiriting" required>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" id="modalSubmitBtn" class="btn btn-success w-100">Javobni yuborish</button>
-                            <!-- Close and Refresh Button -->
-                            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal" aria-label="Close" onclick="closeModalAndRefresh()">Yopish va yangilash</button>
+                        <div class="modal-footer d-flex flex-column gap-2">
+                            <button type="submit" id="modalSubmitBtn" class="btn btn-success w-100">Javobni yuborish
+                            </button>
+                            <a href="/math-test" id="closeBtnAfterTimeout"
+                               class="btn btn-secondary w-100 d-none">Yopish</a>
                         </div>
                     </form>
                 </div>
@@ -98,49 +102,37 @@
         <!-- Modal backdrop -->
         <div class="modal-backdrop fade show"></div>
     @endif
+    <script>
+        let timer = {{ $timer ?? 30 }};
+        const updateTimerDisplay = (value) => {
+            const displays = document.querySelectorAll('#modalTimerDisplay');
+            displays.forEach(display => display.textContent = value + 's');
+        };
 
-
-    <!-- Timer Script -->
-    @if (isset($expression) && !isset($result))
-        <script>
-            let timer = {{ $timer ?? 30 }};
-            const updateTimerDisplay = (value) => {
-                const displays = document.querySelectorAll('#modalTimerDisplay');
-                displays.forEach(display => display.textContent = value + 's');
-            };
-
-            function startTimer() {
+        function startTimer() {
+            updateTimerDisplay(timer);
+            const interval = setInterval(() => {
+                timer--;
                 updateTimerDisplay(timer);
-                const interval = setInterval(() => {
-                    timer--;
-                    updateTimerDisplay(timer);
-                    if (timer <= 0) {
-                        clearInterval(interval);
-                        const submitBtn = document.getElementById('modalSubmitBtn');
-                        if (submitBtn) {
-                            submitBtn.disabled = true;
-                            submitBtn.textContent = 'Vaqt tugadi';
-                            submitBtn.classList.remove('btn-success');
-                            submitBtn.classList.add('btn-secondary');
-                        }
+                if (timer <= 0) {
+                    clearInterval(interval);
+
+                    // Hide submit button
+                    const submitBtn = document.getElementById('modalSubmitBtn');
+                    if (submitBtn) {
+                        submitBtn.classList.add('d-none');
                     }
-                }, 1000);
-            }
 
-            function closeModalAndRefresh() {
-                // Close the modal even if the timer runs out
-                const modal = document.getElementById('questionModal');
-                const backdrop = document.querySelector('.modal-backdrop');
-                if (modal) {
-                    modal.classList.remove('show');
-                    backdrop.classList.remove('show');
-                    modal.style.display = 'none';
+                    // Show only the "Yopish" link to go back to /math-test
+                    const closeBtn = document.getElementById('closeBtnAfterTimeout');
+                    if (closeBtn) {
+                        closeBtn.classList.remove('d-none');
+                    }
                 }
-                window.location.reload();  // Refresh the page
-            }
+            }, 1000);
+        }
 
-            window.addEventListener('load', startTimer);
-        </script>
-    @endif
+        window.addEventListener('load', startTimer);
+    </script>
 
 @endsection
