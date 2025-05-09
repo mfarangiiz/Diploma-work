@@ -65,8 +65,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal for Question -->
     @if (isset($expression) && !isset($result))
         <div class="modal fade show" id="questionModal" tabindex="-1" aria-labelledby="questionModalLabel" style="display: block;" aria-modal="true" role="dialog">
             <div class="modal-dialog">
@@ -74,30 +72,33 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="questionModalLabel">Savol</h5>
                     </div>
-                    <div class="modal-body">
-                        <div class="text-center mb-3">
-                    <span class="badge bg-danger p-2">
-                        Qolgan vaqt: <span id="modalTimerDisplay" class="fw-bold">{{ $timer ?? 30 }}s</span>
-                    </span>
-                        </div>
-                        <h4 class="text-center mb-3">{{ $expression }}</h4>
-                        <form method="POST" action="/submit-answer">
-                            @csrf
-                            <input type="hidden" name="timer" value="{{ $timer }}">
+                    <form method="POST" action="/submit-answer">
+                        @csrf
+                        <input type="hidden" name="timer" value="{{ $timer }}">
+                        <div class="modal-body">
+                            <div class="text-center mb-3">
+                                <span class="badge bg-danger p-2">
+                                    Qolgan vaqt: <span id="modalTimerDisplay" class="fw-bold">{{ $timer ?? 30 }}s</span>
+                                </span>
+                            </div>
+                            <h4 class="text-center mb-3">{{ $expression }}</h4>
                             <div class="mb-3">
                                 <input type="number" name="answer" class="form-control" placeholder="Javobingizni kiriting" required>
                             </div>
-                            <div class="text-center">
-                                <button type="submit" id="modalSubmitBtn" class="btn btn-success w-100">Javobni yuborish</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="modalSubmitBtn" class="btn btn-success w-100">Javobni yuborish</button>
+                            <!-- Close and Refresh Button -->
+                            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal" aria-label="Close" onclick="closeModalAndRefresh()">Yopish va yangilash</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
         <!-- Modal backdrop -->
         <div class="modal-backdrop fade show"></div>
     @endif
+
 
     <!-- Timer Script -->
     @if (isset($expression) && !isset($result))
@@ -124,6 +125,18 @@
                         }
                     }
                 }, 1000);
+            }
+
+            function closeModalAndRefresh() {
+                // Close the modal even if the timer runs out
+                const modal = document.getElementById('questionModal');
+                const backdrop = document.querySelector('.modal-backdrop');
+                if (modal) {
+                    modal.classList.remove('show');
+                    backdrop.classList.remove('show');
+                    modal.style.display = 'none';
+                }
+                window.location.reload();  // Refresh the page
             }
 
             window.addEventListener('load', startTimer);
